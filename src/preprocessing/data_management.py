@@ -22,6 +22,8 @@ def save_model(theta0,theta):
     with open(pkl_file_path,"wb") as file_handle:
         file_handle.dump({"params":{"biases":theta0,"weights":theta},"activations":config.f})
 
+    print("Saved model with file name {} at {}".format("two_input_xor_nn.pkl",config.SAVED_MODEL_PATH))
+
 
 def load_model(file_name):
 

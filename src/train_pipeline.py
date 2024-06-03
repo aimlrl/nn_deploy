@@ -73,6 +73,7 @@ def run_training(tol,epsilon):
     epoch_counter = 0
     mse = 1
     loss_per_epoch = list()
+    loss_per_epoch.append(mse)
 
     training_data = load_dataset("train.csv")
 
@@ -82,7 +83,7 @@ def run_training(tol,epsilon):
 
     pl.initialize_parameters()
 
-    while mse > tol:
+    while True:
 
       mse = 0
 
@@ -142,12 +143,12 @@ def run_training(tol,epsilon):
 
       print("Epoch # {}, Loss = {}".format(epoch_counter,mse))
 
+      if abs(loss_per_epoch[epoch_counter] - loss_per_epoch[epoch_counter-1]) < tol:
+         break
+
+
 
 
 if __name__ == "__main__":
-   run_training(10**(-3),10**(-7))
+   run_training(10**(-8),10**(-7))
    save_model(pl.theta0,pl.theta)
-
-
-    
-
